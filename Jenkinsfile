@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage("Cleanup Ws"){
             steps {
-                cleanupWs()
+                cleanWs()
             }
         }
         stage("Build Application"){
