@@ -9,7 +9,12 @@ pipeline {
     stages {
         stage("Build Application"){
             steps {
-                sh "mvn package -Dmaven.test.skip"
+                sh "mvn clean package -Dmaven.test.skip"
+            }
+        }
+        stage("Test Application"){
+            steps {
+                sh "mvn test"
             }
         }
     }
