@@ -27,9 +27,7 @@ pipeline {
         }
         stage("Build And Push Docker Image"){
             steps {
-                docker.withRegistry('', DOCKER_PASS) {
                 sh "mvn spring-boot:build-image -DskipTests -DdockerPassword=${dockerhub}"
-                }
             }
         }
     }
