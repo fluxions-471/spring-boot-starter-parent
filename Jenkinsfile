@@ -6,6 +6,14 @@ pipeline {
         jdk 'Java17'
         maven 'Maven3'
     }
+    environment {
+        APP_NAME = "spring-boot-starter-parent"
+        RELEASE = "0.0.1"
+        DOCKER_USER = "priajiabror"
+        DOCKER_PASS = 'dockerhub'
+        IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+        IMAGE_TAGE = "${RELEASE}-${BUILD_NUMBER}"
+    }
     stages {
         stage("Build Application"){
             steps {
@@ -15,6 +23,13 @@ pipeline {
         stage("Test Application"){
             steps {
                 sh "mvn test"
+            }
+        }
+        stage("Build And Push Docker Image"){
+            steps {
+                docker.withRegistry('', DOCKER_PASS) {
+                sh "mvn spring-boot:build-image -DskipTests -DdockerPassword=${dockerhub}"
+                }
             }
         }
     }
