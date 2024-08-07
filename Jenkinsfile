@@ -7,14 +7,9 @@ pipeline {
         maven 'Maven3'
     }
     stages {
-        stage("Cleanup Ws"){
-            steps {
-                cleanWs()
-            }
-        }
         stage("Build Application"){
             steps {
-                sh "ls -al"
+                sh "mvn package -Dmaven.test.skip"
             }
         }
     }
