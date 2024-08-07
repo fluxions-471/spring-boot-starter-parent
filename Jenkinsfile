@@ -14,7 +14,7 @@ pipeline {
         }
         stage("Build Application"){
             steps {
-                sh "mvn package -Dmaven.test.skip"
+                sh "ls -al"
             }
         }
     }
