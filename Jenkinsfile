@@ -18,23 +18,25 @@ pipeline {
     stages {
         stage("Build And Push Docker Image"){
             steps {
-                def modules = ["api-gateway", "inventory-service", "notification-service", "order-service", "product-service", "frontend"]
-                def commitMessage = sh(script: "git log --pretty=format:\"%h %s\" | head -n 1", returnStdout: true).trim()
-                for (module in modules) {
-                    if (commitMessage.contains(module)) {
-                        echo "Changes detected in module: ${module}"
-                        dir("${module}") {
-                            docker.withRegistry('', DOCKER_PASS2) {
-                                if(module=="frontend"){
-                                    docker_image = docker.build "priajiabror/frontend:latest"
-                                    docker_image.push('latest')
-                                } else {
-                                    sh 'mvn spring-boot:build-image -DskipTests -DdockerPassword=${DOCKER_PASS}'
+                script {
+                    def modules = ["api-gateway", "inventory-service", "notification-service", "order-service", "product-service", "frontend"]
+                    def commitMessage = sh(script: "git log --pretty=format:\"%h %s\" | head -n 1", returnStdout: true).trim()
+                    for (module in modules) {
+                        if (commitMessage.contains(module)) {
+                            echo "Changes detected in module: ${module}"
+                            dir("${module}") {
+                                docker.withRegistry('', DOCKER_PASS2) {
+                                    if(module=="frontend"){
+                                        docker_image = docker.build "priajiabror/frontend:latest"
+                                        docker_image.push('latest')
+                                    } else {
+                                        sh 'mvn spring-boot:build-image -DskipTests -DdockerPassword=${DOCKER_PASS}'
+                                    }
                                 }
                             }
+                        } else {
+                            echo "No Changes in module: ${module}"
                         }
-                    } else {
-                        echo "No Changes in module: ${module}"
                     }
                 }
             }
