@@ -13,7 +13,7 @@ pipeline {
         DOCKER_PASS = credentials('dockerhub')
         DOCKER_PASS2 = 'dockerlogin'
         IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
-        IMAGE_TAGE = "${RELEASE}-${BUILD_NUMBER}"
+        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
     stages {
         stage("Build And Push Docker Image"){
