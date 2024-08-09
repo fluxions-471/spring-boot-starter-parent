@@ -26,6 +26,7 @@
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
 		<dockerPassword>${dockerPassword}</dockerPassword>
+		<appVersion>${appVersion}</appVersion>
 	</properties>
 
 	<build>
@@ -35,7 +36,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>priajiabror/new-${project.artifactId}:${project.version}</name>
+						<name>priajiabror/new-${project.artifactId}:${appVersion}</name>
 						<builder>dashaun/builder:tiny</builder>
 						<publish>true</publish>
 					</image>
