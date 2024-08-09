@@ -49,4 +49,4 @@ kind: ConfigMap
 metadata:
   name: inventory-service-config
 data:
-  SPRING_DATASOURCE_URL: "jdbc:mysql://mysql.default.svc.cluster.local:3306/inventory_service"
+  SPRING_DATASOURCE_URL: "jdbc:mysql://192.168.1.121:3306/inventory_service"
