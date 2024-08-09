@@ -2,7 +2,7 @@ import { PassedInitialConfig } from 'angular-auth-oidc-client';
 
 export const authConfig: PassedInitialConfig = {
   config: {
-    authority: 'http://192.168.1.121:8181/realms/spring-mricroservices-security-realm',
+    authority: 'http://keycloak.priaji.cloud/realms/spring-mricroservices-security-realm',
     redirectUrl: window.location.origin,
     postLogoutRedirectUri: window.location.origin,
     clientId: 'angular-client',

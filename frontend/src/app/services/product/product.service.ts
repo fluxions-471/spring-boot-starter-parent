@@ -12,10 +12,10 @@ export class ProductService {
   }
 
   getProducts(): Observable<Array<Product>> {
-    return this.httpClient.get<Array<Product>>('http://192.168.1.120:9000/api/product');
+    return this.httpClient.get<Array<Product>>('http://apigw.priaji.cloud/api/product');
   }
 
   createProduct(product: Product): Observable<Product> {
-    return this.httpClient.post<Product>('http://192.168.1.120:9000/api/product', product);
+    return this.httpClient.post<Product>('http://apigw.priaji.cloud/api/product', product);
   }
 }

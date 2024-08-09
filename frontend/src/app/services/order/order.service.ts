@@ -19,6 +19,6 @@ export class OrderService {
       }),
       responseType: 'text' as 'json'
     };
-    return this.httpClient.post<string>('http://192.168.1.120:9000/api/order', order, httpOptions);
+    return this.httpClient.post<string>('http://apigw.priaji.cloud/api/order', order, httpOptions);
   }
 }
