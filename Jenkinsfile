@@ -28,7 +28,7 @@ pipeline {
                                 docker.withRegistry('', DOCKER_PASS2) {
                                     if(module=="frontend"){
                                         docker_image = docker.build "${DOCKER_USER}/${module}"
-                                        docker_image.push("${IMAGE_TAG}")
+                                        docker_image.push("${RELEASE}")
                                     } else {
                                         sh 'mvn spring-boot:build-image -DskipTests -DdockerPassword=${DOCKER_PASS}'
                                     }
