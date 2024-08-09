@@ -12,10 +12,10 @@ export class ProductService {
   }
 
   getProducts(): Observable<Array<Product>> {
-    return this.httpClient.get<Array<Product>>('http://localhost:9000/api/product');
+    return this.httpClient.get<Array<Product>>('http://api-gateway.default.svc.cluster.local:9000/api/product');
   }
 
   createProduct(product: Product): Observable<Product> {
-    return this.httpClient.post<Product>('http://localhost:9000/api/product', product);
+    return this.httpClient.post<Product>('http://api-gateway.default.svc.cluster.local:9000/api/product', product);
   }
 }

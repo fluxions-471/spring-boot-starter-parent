@@ -19,6 +19,6 @@ export class OrderService {
       }),
       responseType: 'text' as 'json'
     };
-    return this.httpClient.post<string>('http://localhost:9000/api/order', order, httpOptions);
+    return this.httpClient.post<string>('http://api-gateway.default.svc.cluster.local:9000/api/order', order, httpOptions);
   }
 }
