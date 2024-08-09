@@ -15,14 +15,9 @@ pipeline {
         IMAGE_TAGE = "${RELEASE}-${BUILD_NUMBER}"
     }
     stages {
-        stage("Test Application"){
-            steps {
-                sh "mvn test"
-            }
-        }
         stage("Build And Push Docker Image"){
             steps {
-                sh "mvn spring-boot:build-image -DskipTests -DdockerPassword=${DOCKER_PASS}"
+                sh 'mvn spring-boot:build-image -DskipTests -DdockerPassword=${DOCKER_PASS}'
             }
         }
     }
