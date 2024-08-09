@@ -51,7 +51,7 @@ pipeline {
                     for (module in modules) {
                         if (commitMessage.contains(module)) {
                             echo "Changes detected in module: ${module}"
-                            sh "curl -v -k --user admin:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'MODULE_NAME=${module}' 'https://jenkins.priaji.cloud/job/gitops-complete-pipeline/buildWithParameters?token=gitops-token'"
+                            sh "curl -v -k --user admin:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' --data 'MODULE_NAME=${module}' 'https://jenkins.priaji.cloud/job/gitops-complete-pipeline/buildWithParameters?token=gitops-token'"
                         } else {
                             echo "No Changes in module: ${module}"
                         }
